@@ -29,17 +29,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static net.stardustlabs.terralith.fabric.TerralithFabric.Mode.COMPATIBLE;
+import static net.stardustlabs.terralith.fabric.TerralithFabric.Mode.TERRABLENDER;
 import static net.stardustlabs.terralith.fabric.TerralithFabric.currentMode;
 import static net.stardustlabs.terralith.fabric.config.r.ConfigUtil.MODID;
 
 
 public class TerrablenderInit implements TerraBlenderApi {
 
-    private static final String OVERWORLD = "terralith_default/data/minecraft/dimension/overworld.json";
+    private static final String OVERWORLD = "data/minecraft/dimension/overworld.json";
     @Override
     public void onTerraBlenderInitialized() {
-        if(currentMode.equals(COMPATIBLE)){
+        if(currentMode.equals(TERRABLENDER)){
             registerRegions();
             readOverworldSurfaceRules();
         }
@@ -73,7 +73,7 @@ public class TerrablenderInit implements TerraBlenderApi {
     public static List<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> readParameterPoints() {
         InputStream im;
         try {
-            Path path = Util.getResourceDirectory(TerralithFabric.MODID, "resources/" + OVERWORLD);
+            Path path = Util.getResourceDirectory(TerralithFabric.MODID, "/resources/" + OVERWORLD);
             if(path == null) throw new RuntimeException();
             im = Files.newInputStream(path);
         } catch (IOException e) {
@@ -117,7 +117,7 @@ public class TerrablenderInit implements TerraBlenderApi {
     }
 
     public static void terraEnableDisable(){
-        if(currentMode.equals(COMPATIBLE)){
+        if(currentMode.equals(TERRABLENDER)){
             registerRegions();
             readOverworldSurfaceRules();
         }
@@ -128,15 +128,11 @@ public class TerrablenderInit implements TerraBlenderApi {
     }
 
     public static void registerRegions(){
-        Regions.register(new TerralithRegion(Util.terralithRes("overworld_1"), 4));
-        Regions.register(new TerralithRegion(Util.terralithRes("overworld_2"), 3));
-        Regions.register(new TerralithRegion(Util.terralithRes("overworld_3"), 3));
+        Regions.register(new TerralithRegion(Util.terralithRes("overworld"), 4));
 
     }
 
     private static void removeRegions(){
-        Regions.remove(RegionType.OVERWORLD, Util.terralithRes("overworld_1"));
-        Regions.remove(RegionType.OVERWORLD, Util.terralithRes("overworld_2"));
-        Regions.remove(RegionType.OVERWORLD, Util.terralithRes("overworld_3"));
+        Regions.remove(RegionType.OVERWORLD, Util.terralithRes("overworld"));
     }
 }

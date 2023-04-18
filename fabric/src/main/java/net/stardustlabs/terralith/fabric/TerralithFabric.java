@@ -17,15 +17,14 @@ public class TerralithFabric implements ModInitializer {
 
     public static final String MODID = "terralith";
     public static final Logger LOGGER = LogManager.getLogger(ConfigUtil.MODID);
-    public static final Version WWOOVersion = FabricLoader.getInstance().getModContainer(MODID).get().getMetadata().getVersion();
-    public static Mode currentMode = Util.getMode(CommentedConfig.getConfig().mode());
+    public static final Version TerralithVersion = FabricLoader.getInstance().getModContainer(MODID).get().getMetadata().getVersion();
+    public static Mode currentMode = Util.getMode(CommentedConfig.getConfig().terrablender());
     public static final String minTerraBlenderVersion = "2.2.0.154";
 
     @Override
     public void onInitialize() {
         Terralith.init();
         LOGGER.info("Loading Terralith");
-        //Config.init();
     }
 
     public static boolean isTerraBlenderLoaded(){
@@ -43,7 +42,7 @@ public class TerralithFabric implements ModInitializer {
     }
 
     public enum Mode {
-        COMPATIBLE,
+        TERRABLENDER,
         DEFAULT
     }
 }

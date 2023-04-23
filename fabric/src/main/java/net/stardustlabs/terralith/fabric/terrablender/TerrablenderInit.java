@@ -73,7 +73,7 @@ public class TerrablenderInit implements TerraBlenderApi {
     public static List<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> readParameterPoints() {
         InputStream im;
         try {
-            Path path = Util.getResourceDirectory(TerralithFabric.MODID, "/resources/" + OVERWORLD);
+            Path path = Util.getResourceDirectory(TerralithFabric.MODID, "resources/" + OVERWORLD);
             if(path == null) throw new RuntimeException();
             im = Files.newInputStream(path);
         } catch (IOException e) {

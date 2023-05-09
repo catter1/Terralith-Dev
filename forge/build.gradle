@@ -13,9 +13,6 @@ loom {
     forge {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
-
-        mixinConfig "terralith-common.mixins.json"
-        mixinConfig "terralith.mixins.json"
     }
 }
 
@@ -32,6 +29,10 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+}
+
+repositories {
+    mavenCentral()
 }
 
 processResources {

@@ -27,11 +27,16 @@ public class ConfigUtil {
         file.addProperty(MODE_NAME, true);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try (FileWriter fileWriter = new FileWriter(FILE_PATH.toFile()); JsonWriter jsonWriter = gson.newJsonWriter(fileWriter)) {
+
+        try {
             Util.createDirectoriesSafe(TERRALITH_CONFIG_DIR);
+        } catch (IOException e) {
+            Terralith.LOGGER.error("Couldn't create directories", e);
+        }
+        try (FileWriter fileWriter = new FileWriter(FILE_PATH.toFile()); JsonWriter jsonWriter = gson.newJsonWriter(fileWriter)) {
             jsonWriter.jsonValue(gson.toJson(file));
         } catch (IOException ex) {
-            Terralith.LOGGER.error("Couldn't create Directories or config file");
+            Terralith.LOGGER.error("Couldn't create config file", ex);
         }
     }
 

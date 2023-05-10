@@ -17,15 +17,15 @@
   "entrypoints": {
     "main": [
       "net.stardustlabs.terralith.fabric.TerralithFabric"
+    ],
+    "terrablender": [
+      "net.stardustlabs.terralith.fabric.terrablender.TerrablenderInit"
     ]
   },
-  "mixins": [
-    "terralith.mixins.json",
-    "terralith-common.mixins.json"
-  ],
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.18.2",
-    "architectury": ">=4.11.91"
+    "minecraft": "1.18.2",
+    "cristellib": "*",
+    "unfixed-seeds": "*"
   }
 }

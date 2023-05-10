@@ -1,20 +1,28 @@
 package net.stardustlabs.terralith;
 
-import com.google.common.base.Suppliers;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-
-import java.util.function.Supplier;
+import net.cristellib.builtinpacks.BuiltInDataPacks;
+import net.stardustlabs.terralith.utils.Util;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Terralith {
     public static final String MOD_ID = "terralith";
-    // We can use this if we don't want to use DeferredRegister
-    // public static final Supplier<Registries> REGISTRIES = Suppliers.memoize(() -> Registries.get(MOD_ID));
-    
-    public static void init() {        
-        // System.out.println(TerralithExpectPlatform.getConfigDirectory().toAbsolutePath().normalize().toString());
+
+    public static final Logger LOGGER = LogManager.getLogger("Terralith");
+
+    public static Mode MODE = Util.getMode();
+    public static final String minTerraBlenderVersion = "2.2.0.154";
+
+    public static void init() {
+        BuiltInDataPacks.registerPack("Terralith Default", "resources/terralith_default", MOD_ID, () -> MODE.equals(Mode.DEFAULT));
+    }
+
+    public enum Mode {
+        TERRABLENDER,
+        DEFAULT
+    }
+
+    public static boolean isTerrablenderLoaded(){
+        return TerralithExpectPlatform.isModLoadedWithVersion("terrablender", Terralith.minTerraBlenderVersion);
     }
 }

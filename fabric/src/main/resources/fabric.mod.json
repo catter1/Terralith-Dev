@@ -2,17 +2,20 @@
   "schemaVersion": 1,
   "id": "terralith",
   "version": "${version}",
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Terralith",
+  "description": "Terralith ~ Overworld Evolved (v2.2.4 for 1.18.2)",
   "authors": [
-    "Me!"
+    "Stardust Labs",
+    "CristelKnight"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://www.stardustlabs.net/",
+    "sources": "https://github.com/Stardust-Labs-MC/Terralith",
+    "issues": "https://github.com/Stardust-Labs-MC/Terralith/issues",
+    "discord": "https://discord.gg/stardustlabs"
   },
-  "license": "Insert License Here",
-  "icon": "assets/terralith/icon.png",
+  "license": "Stardust Labs License",
+  "icon": "pack.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -27,5 +30,12 @@
     "minecraft": "1.18.2",
     "cristellib": "*",
     "unfixed-seeds": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/stardustlabs"
+      }
+    }
   }
 }

@@ -115,5 +115,6 @@ public class TerrablenderUtil {
 
     public static void registerRegions(){
         Regions.register(new TerralithRegion(new TerralithRL("overworld"), 4));
+        Terralith.LOGGER.info("Terralith region created!");
     }
 }

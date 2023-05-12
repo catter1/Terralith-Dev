@@ -1,17 +1,15 @@
 modLoader = "javafml"
 loaderVersion = "[40,)"
-#issueTrackerURL = ""
-license = "Insert License Here"
+issueTrackerURL = "https://www.github.com/Stardust-Labs-MC/Terralith/issues"
+license = "Stardust Labs License"
 
 [[mods]]
 modId = "terralith"
 version = "${version}"
-displayName = "Example Mod"
-authors = "Me!"
-description = '''
-This is an example description! Tell everyone what your mod is about!
-'''
-#logoFile = ""
+displayName = "Terralith"
+authors = "Stardust Labs & CristelKnight"
+description = "Terralith ~ Overworld Evolved (v2.2.4 for 1.18.2)"
+logoFile = "pack.png"
 
 [[dependencies.terralith]]
 modId = "forge"

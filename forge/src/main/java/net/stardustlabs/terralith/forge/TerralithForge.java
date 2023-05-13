@@ -24,6 +24,7 @@ public class TerralithForge {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         Terralith.init();
 
+        /*
         if(Terralith.MODE.equals(Terralith.Mode.TERRABLENDER)) {
             for(String biome : PreLoadTerralithBiomes.getBiomeFiles()){
                 ResourceLocation location = new TerralithRL(biome);
@@ -32,6 +33,8 @@ public class TerralithForge {
             }
             BIOMES.register(bus);
         }
+
+         */
 
 
 

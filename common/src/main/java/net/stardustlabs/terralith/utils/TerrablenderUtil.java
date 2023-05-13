@@ -90,16 +90,7 @@ public class TerrablenderUtil {
                 ResourceKey<Biome> r = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(b));
                 JsonObject jo = e.get("parameters").getAsJsonObject();
 
-                Climate.ParameterPoint point = new Gson().fromJson(jo, Climate.ParameterPoint.class);
-                if(point == null) {
-                    Terralith.LOGGER.error("Point for location: " + b + " is null");
-                    continue;
-                }
-
-                if(r == null) {
-                    Terralith.LOGGER.error("ResourceKey<Biome> for location: " + b + " is null");
-                    continue;
-                }
+                Climate.ParameterPoint point = readConfig(jo, Climate.ParameterPoint.CODEC, JsonOps.INSTANCE);
 
                 Pair<Climate.ParameterPoint, ResourceKey<Biome>> pair = new Pair<>(point, r);
                 list.add(pair);

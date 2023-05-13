@@ -15,6 +15,7 @@ public class TerralithFabric implements ModInitializer {
     public void onInitialize() {
         Terralith.init();
 
+        /*
         if(Terralith.MODE.equals(Terralith.Mode.TERRABLENDER)) {
             for (String biome : PreLoadTerralithBiomes.getBiomeFiles()) {
                 ResourceLocation location = new TerralithRL(biome);
@@ -22,6 +23,7 @@ public class TerralithFabric implements ModInitializer {
                 Registry.register(BuiltinRegistries.BIOME, location, OverworldBiomes.theVoid());
             }
         }
+         */
 
         Terralith.LOGGER.info("Terralith has been initialized");
     }

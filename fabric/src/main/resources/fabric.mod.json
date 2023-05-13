@@ -32,6 +32,9 @@
     "unfixed-seeds": "*",
 	"cristellib": "*"
   },
+  "mixins": [
+    "terralith-common.mixins.json"
+  ],
   "custom": {
     "modmenu": {
       "links": {

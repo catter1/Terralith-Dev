@@ -25,9 +25,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
-import java.util.function.BiFunction;
-import java.util.function.Predicate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 public class TerrablenderUtil {
@@ -87,7 +87,9 @@ public class TerrablenderUtil {
             for(int i = 0; i < jsonArray.size(); i++){
                 JsonObject e = jsonArray.get(i).getAsJsonObject();
                 String b = e.get("biome").getAsString();
-                ResourceKey<Biome> r = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(b));
+                ResourceLocation location = new ResourceLocation(b);
+                if(location.getNamespace().equals("minecraft")) continue;
+                ResourceKey<Biome> r = ResourceKey.create(Registry.BIOME_REGISTRY, location);
                 JsonObject jo = e.get("parameters").getAsJsonObject();
 
                 Climate.ParameterPoint point = readConfig(jo, Climate.ParameterPoint.CODEC, JsonOps.INSTANCE);
@@ -117,7 +119,7 @@ public class TerrablenderUtil {
 
 
     public static void registerRegions(){
-        Regions.register(new TerralithRegion(new TerralithRL("overworld"), 4));
+        Regions.register(new TerralithRegion(new TerralithRL("overworld"), 10));
         Terralith.LOGGER.info("Terralith region created!");
     }
 

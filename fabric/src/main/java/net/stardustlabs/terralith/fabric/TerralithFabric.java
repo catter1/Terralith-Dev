@@ -1,13 +1,7 @@
 package net.stardustlabs.terralith.fabric;
 
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
-import net.minecraft.data.worldgen.biome.OverworldBiomes;
-import net.minecraft.resources.ResourceLocation;
 import net.stardustlabs.terralith.Terralith;
-import net.stardustlabs.terralith.TerralithRL;
-import net.stardustlabs.terralith.utils.PreLoadTerralithBiomes;
 
 public class TerralithFabric implements ModInitializer {
 

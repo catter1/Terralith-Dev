@@ -116,50 +116,7 @@ public class TerrablenderUtil {
         }
     }
 
-    public static Map<ResourceLocation, Biome> biomes(){
-        Map<ResourceLocation, Biome> biomes = new HashMap<>();
 
-        for(Path p : getBiomeFiles()){
-            InputStream im;
-            try {
-                im = Files.newInputStream(p);
-            } catch (IOException e) {
-                Terralith.LOGGER.error("Couldn't read " + OVERWORLD + ", crashing instead");
-                throw new RuntimeException(e);
-            }
-            try (InputStreamReader reader = new InputStreamReader(im)) {
-                JsonElement el = JsonParser.parseReader(reader);
-
-                Biome b = TerrablenderUtil.readConfig(el, Biome.CODEC, JsonOps.INSTANCE).value();
-                biomes.put(new TerralithRL(p.getFileName().toString()), b);
-
-            } catch (FileNotFoundException e) {
-                Terralith.LOGGER.error("Couldn't read " + OVERWORLD + ", crashing instead");
-                throw new RuntimeException(e);
-            } catch (IOException | JsonSyntaxException e) {
-                Terralith.LOGGER.error("Couldn't read " + OVERWORLD + ", crashing instead");
-                e.printStackTrace();
-                throw new RuntimeException(e);
-            }
-        }
-        return biomes;
-    }
-
-    public static List<Path> getBiomeFiles(){
-        List<Path> paths = new ArrayList<>();
-        try {
-            walk(CristelLibExpectPlatform.getResourceDirectory(Terralith.HIGHEST_MOD_ID, "data/terralith/worldgen/biome"), Files::exists, (path, file) -> {
-                if (Files.isRegularFile(file) && file.getFileName().toString().endsWith(".json")) {
-                    Terralith.LOGGER.error(file.toString());
-                    paths.add(file);
-                }
-                return true;
-            }, true, Integer.MAX_VALUE);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return paths;
-    }
 
 
     public static void readOverworldSurfaceRules() {
@@ -174,21 +131,5 @@ public class TerrablenderUtil {
     }
 
 
-    public static void walk(Path root, Predicate<Path> rootFilter, BiFunction<Path, Path, Boolean> processor, boolean visitAllFiles, int maxDepth) throws IOException {
-        if (root == null || !Files.exists(root) || !rootFilter.test(root)) {
-            return;
-        }
-        if (processor != null) {
-            try (var stream = Files.walk(root, maxDepth)) {
-                Iterator<Path> itr = stream.iterator();
 
-                while (itr.hasNext()) {
-                    boolean keepGoing = processor.apply(root, itr.next());
-                    if (!visitAllFiles && !keepGoing) {
-                        return;
-                    }
-                }
-            }
-        }
-    }
 }

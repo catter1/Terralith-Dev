@@ -6,6 +6,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.JsonOps;
+import net.cristellib.CristelLibExpectPlatform;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -24,9 +25,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.Predicate;
 
 
 public class TerrablenderUtil {
@@ -39,7 +40,7 @@ public class TerrablenderUtil {
     public static SurfaceRules.RuleSource readSurfaceRulesFromNoise() {
         InputStream im;
         try {
-            Path path = Util.getResourceDirectory(Terralith.MOD_ID, NOISE);
+            Path path = CristelLibExpectPlatform.getResourceDirectory(Terralith.HIGHEST_MOD_ID, NOISE);
             if(path == null) throw new RuntimeException();
             im = Files.newInputStream(path);
         } catch (IOException e) {
@@ -69,7 +70,7 @@ public class TerrablenderUtil {
     public static List<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> readParameterPoints() {
         InputStream im;
         try {
-            Path path = Util.getResourceDirectory(Terralith.MOD_ID, "resources/" + OVERWORLD);
+            Path path = CristelLibExpectPlatform.getResourceDirectory(Terralith.HIGHEST_MOD_ID, OVERWORLD);
             if(path == null) throw new RuntimeException();
             im = Files.newInputStream(path);
         } catch (IOException e) {
@@ -79,7 +80,7 @@ public class TerrablenderUtil {
 
         try (InputStreamReader reader = new InputStreamReader(im)) {
             JsonElement el = JsonParser.parseReader(reader);
-            if (!el.isJsonObject()) return null;
+            if (!el.isJsonObject()) throw new RuntimeException("Input stream is on JsonElement");
             List<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> list = new ArrayList<>();
             JsonObject o = el.getAsJsonObject();
             JsonArray jsonArray = o.get("generator").getAsJsonObject().get("biome_source").getAsJsonObject().get("biomes").getAsJsonArray();
@@ -90,6 +91,15 @@ public class TerrablenderUtil {
                 JsonObject jo = e.get("parameters").getAsJsonObject();
 
                 Climate.ParameterPoint point = new Gson().fromJson(jo, Climate.ParameterPoint.class);
+                if(point == null) {
+                    Terralith.LOGGER.error("Point for location: " + b + " is null");
+                    continue;
+                }
+
+                if(r == null) {
+                    Terralith.LOGGER.error("ResourceKey<Biome> for location: " + b + " is null");
+                    continue;
+                }
 
                 Pair<Climate.ParameterPoint, ResourceKey<Biome>> pair = new Pair<>(point, r);
                 list.add(pair);
@@ -106,6 +116,51 @@ public class TerrablenderUtil {
         }
     }
 
+    public static Map<ResourceLocation, Biome> biomes(){
+        Map<ResourceLocation, Biome> biomes = new HashMap<>();
+
+        for(Path p : getBiomeFiles()){
+            InputStream im;
+            try {
+                im = Files.newInputStream(p);
+            } catch (IOException e) {
+                Terralith.LOGGER.error("Couldn't read " + OVERWORLD + ", crashing instead");
+                throw new RuntimeException(e);
+            }
+            try (InputStreamReader reader = new InputStreamReader(im)) {
+                JsonElement el = JsonParser.parseReader(reader);
+
+                Biome b = TerrablenderUtil.readConfig(el, Biome.CODEC, JsonOps.INSTANCE).value();
+                biomes.put(new TerralithRL(p.getFileName().toString()), b);
+
+            } catch (FileNotFoundException e) {
+                Terralith.LOGGER.error("Couldn't read " + OVERWORLD + ", crashing instead");
+                throw new RuntimeException(e);
+            } catch (IOException | JsonSyntaxException e) {
+                Terralith.LOGGER.error("Couldn't read " + OVERWORLD + ", crashing instead");
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+        return biomes;
+    }
+
+    public static List<Path> getBiomeFiles(){
+        List<Path> paths = new ArrayList<>();
+        try {
+            walk(CristelLibExpectPlatform.getResourceDirectory(Terralith.HIGHEST_MOD_ID, "data/terralith/worldgen/biome"), Files::exists, (path, file) -> {
+                if (Files.isRegularFile(file) && file.getFileName().toString().endsWith(".json")) {
+                    Terralith.LOGGER.error(file.toString());
+                    paths.add(file);
+                }
+                return true;
+            }, true, Integer.MAX_VALUE);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return paths;
+    }
+
 
     public static void readOverworldSurfaceRules() {
         SurfaceRules.RuleSource s = readSurfaceRulesFromNoise();
@@ -115,5 +170,24 @@ public class TerrablenderUtil {
 
     public static void registerRegions(){
         Regions.register(new TerralithRegion(new TerralithRL("overworld"), 4));
+    }
+
+
+    public static void walk(Path root, Predicate<Path> rootFilter, BiFunction<Path, Path, Boolean> processor, boolean visitAllFiles, int maxDepth) throws IOException {
+        if (root == null || !Files.exists(root) || !rootFilter.test(root)) {
+            return;
+        }
+        if (processor != null) {
+            try (var stream = Files.walk(root, maxDepth)) {
+                Iterator<Path> itr = stream.iterator();
+
+                while (itr.hasNext()) {
+                    boolean keepGoing = processor.apply(root, itr.next());
+                    if (!visitAllFiles && !keepGoing) {
+                        return;
+                    }
+                }
+            }
+        }
     }
 }

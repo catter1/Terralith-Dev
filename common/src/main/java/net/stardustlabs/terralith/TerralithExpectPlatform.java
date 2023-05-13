@@ -20,4 +20,15 @@ public class TerralithExpectPlatform {
     public static boolean isModLoaded(String modid){
         throw new AssertionError();
     }
+
+    @ExpectPlatform
+    public static Platform getPlatform(){
+        throw new AssertionError();
+    }
+
+    public enum Platform {
+        FORGE,
+        FABRIC
+    }
+
 }

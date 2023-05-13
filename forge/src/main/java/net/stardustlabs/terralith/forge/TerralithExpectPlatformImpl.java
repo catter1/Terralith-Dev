@@ -3,6 +3,7 @@ package net.stardustlabs.terralith.forge;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.stardustlabs.terralith.Terralith;
+import net.stardustlabs.terralith.TerralithExpectPlatform;
 import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 
@@ -35,5 +36,9 @@ public class TerralithExpectPlatformImpl {
 
     public static Path getConfigDirectory() {
         return FMLPaths.CONFIGDIR.get();
+    }
+
+    public static TerralithExpectPlatform.Platform getPlatform() {
+        return TerralithExpectPlatform.Platform.FORGE;
     }
 }

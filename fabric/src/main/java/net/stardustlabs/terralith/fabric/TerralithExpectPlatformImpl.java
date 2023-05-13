@@ -4,6 +4,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
 import net.fabricmc.loader.api.VersionParsingException;
 import net.stardustlabs.terralith.Terralith;
+import net.stardustlabs.terralith.TerralithExpectPlatform;
 
 import java.nio.file.Path;
 
@@ -30,5 +31,9 @@ public class TerralithExpectPlatformImpl {
 
     public static Path getConfigDirectory() {
         return FabricLoader.getInstance().getConfigDir();
+    }
+
+    public static TerralithExpectPlatform.Platform getPlatform() {
+        return TerralithExpectPlatform.Platform.FABRIC;
     }
 }

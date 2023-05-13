@@ -18,7 +18,7 @@ public class ConfigUtil {
     public static final Path TERRALITH_CONFIG_DIR = TerralithExpectPlatform.getConfigDirectory().resolve(Terralith.MOD_ID);
 
     public static final Path FILE_PATH = TERRALITH_CONFIG_DIR.resolve("config.json");
-    public static final String MODE_NAME = "mode";
+    public static final String MODE_NAME = "terrablender-compatible";
 
     public static void createConfig(){
         if(FILE_PATH.toFile().exists()) return;

@@ -17,8 +17,7 @@ public class TerralithFabric implements ModInitializer {
         }
 
          */
-
-        Terralith.LOGGER.info("Loading Terralith");
+        Terralith.LOGGER.info("Terralith has been initialized");
     }
 
 

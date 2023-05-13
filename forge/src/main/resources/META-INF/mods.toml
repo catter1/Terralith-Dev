@@ -7,7 +7,7 @@ modId = "terralith"
 version = "${version}"
 displayName = "Terralith"
 displayURL = "https://www.stardustlabs.net/"
-authors = "Stardust Labs, Cristelknight"
+authors = "Stardust Labs & Cristelknight"
 description = "Terralith ~ Overworld Evolved (${version} for 1.18.2)"
 logoFile = "pack.png"
 

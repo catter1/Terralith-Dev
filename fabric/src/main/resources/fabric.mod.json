@@ -5,7 +5,8 @@
   "name": "Terralith",
   "description": "Terralith ~ Overworld Evolved (${version} for 1.18.2)",
   "authors": [
-    "Stardust Labs, Cristelknight"
+    "Stardust Labs",
+    "Cristelknight"
   ],
   "contact": {
     "homepage": "https://www.stardustlabs.net/",
@@ -39,7 +40,7 @@
 		"modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/terralith",
 		"modmenu.modrinth": "https://modrinth.com/mod/terralith",
 		"modmenu.github_releases": "https://github.com/Stardust-Labs-MC/Terralith/releases",
-		"modmenu.wiki": "https://stardustlabs.miraheze.org/wiki/Terralith"  
+		"modmenu.wiki": "https://stardustlabs.miraheze.org/wiki/Terralith"
       }
     }
   }

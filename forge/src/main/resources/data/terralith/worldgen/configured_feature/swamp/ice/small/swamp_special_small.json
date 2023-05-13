@@ -38,7 +38,8 @@
               },
               "decorators": [
                 {
-                  "type": "minecraft:leave_vine"
+                  "type": "minecraft:leave_vine",
+                  "probability": 0.25
                 }
               ],
               "foliage_provider": {
@@ -117,7 +118,8 @@
           },
           "decorators": [
             {
-              "type": "minecraft:leave_vine"
+              "type": "minecraft:leave_vine",
+              "probability": 0.25
             }
           ],
           "foliage_provider": {

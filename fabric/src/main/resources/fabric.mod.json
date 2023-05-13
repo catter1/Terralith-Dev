@@ -3,7 +3,7 @@
   "id": "terralith",
   "version": "${version}",
   "name": "Terralith",
-  "description": "Terralith ~ Overworld Evolved (${version} for 1.18.2)",
+  "description": "Terralith ~ Overworld Evolved (${version} for 1.19.4)",
   "authors": [
     "Stardust Labs",
     "Cristelknight"
@@ -28,8 +28,7 @@
   "depends": {
     "fabricloader": ">=0.12.7",
     "fabric": "*",
-    "minecraft": "~1.18.2",
-    "unfixed-seeds": "*",
+    "minecraft": ">=1.19.3",
 	"cristellib": "*"
   },
   "custom": {

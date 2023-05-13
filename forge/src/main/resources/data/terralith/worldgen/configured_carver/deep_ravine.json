@@ -30,6 +30,7 @@
         "max_exclusive": 0.185
       }
     },
+    "replaceable": "#minecraft:overworld_carver_replaceables",
     "shape": {
       "distance_factor": {
         "type": "minecraft:uniform",

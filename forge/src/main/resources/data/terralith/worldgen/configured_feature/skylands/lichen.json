@@ -24,27 +24,30 @@
         }
       }
     },
-    "vegetation_feature":{"placement":[],"feature": {
-      "type": "minecraft:simple_block",
-      "config": {
-        "to_place": {
-          "type": "minecraft:weighted_state_provider",
-          "entries": [
-            {
-              "weight": 2,
-              "data": {
-                "Name": "minecraft:grass"
+    "vegetation_feature": {
+      "placement": [],
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "weight": 2,
+                "data": {
+                  "Name": "minecraft:grass"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "minecraft:fern"
+                }
               }
-            },
-            {
-              "weight": 1,
-              "data": {
-                "Name": "minecraft:fern"
-              }
-            }
-          ]
+            ]
+          }
         }
       }
     }
-  }}
+  }
 }

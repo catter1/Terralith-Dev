@@ -41,8 +41,7 @@
         }
       }
     },
-    "decorators": [
-    ],
+    "decorators": [],
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {

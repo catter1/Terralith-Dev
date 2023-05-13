@@ -78,7 +78,8 @@
     },
     "decorators": [
       {
-        "type": "minecraft:leave_vine"
+        "type": "minecraft:leave_vine",
+        "probability": 0.25
       }
     ]
   }

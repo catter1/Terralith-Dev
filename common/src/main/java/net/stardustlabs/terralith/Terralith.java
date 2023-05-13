@@ -1,6 +1,7 @@
 package net.stardustlabs.terralith;
 
 import net.cristellib.builtinpacks.BuiltInDataPacks;
+import net.minecraft.network.chat.Component;
 import net.stardustlabs.terralith.utils.Util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,10 +14,10 @@ public class Terralith {
     public static final Logger LOGGER = LogManager.getLogger("Terralith");
 
     public static Mode MODE = Util.getMode();
-    public static final String minTerraBlenderVersion = "1.2.0.126";
+    public static final String minTerraBlenderVersion = "2.2.0.156";
 
     public static void init() {
-        BuiltInDataPacks.registerPack("Terralith Default", "resources/terralith_default", HIGHEST_MOD_ID, () -> MODE.equals(Mode.DEFAULT));
+        BuiltInDataPacks.registerPack(new TerralithRL("resources/terralith_default") , HIGHEST_MOD_ID, Component.literal("Terralith Default"), () -> MODE.equals(Mode.DEFAULT));
     }
 
     public enum Mode {

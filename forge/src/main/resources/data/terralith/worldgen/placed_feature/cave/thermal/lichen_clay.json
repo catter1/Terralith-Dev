@@ -1,6 +1,7 @@
 {
   "feature": {
-    "type": "minecraft:glow_lichen",
+    "type": "minecraft:multiface_growth",
+    "block":"glow_lichen",
     "config": {
       "search_range": 2,
       "chance_of_spreading": 0.3,

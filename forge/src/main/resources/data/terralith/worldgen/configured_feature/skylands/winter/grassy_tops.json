@@ -6,7 +6,8 @@
       "type": "minecraft:matching_blocks",
       "blocks": [
         "minecraft:stone",
-        "calcite","diorite",
+        "calcite",
+        "diorite",
         "minecraft:air"
       ]
     },

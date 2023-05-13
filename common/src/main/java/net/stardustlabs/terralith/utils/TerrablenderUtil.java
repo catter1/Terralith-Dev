@@ -7,7 +7,7 @@ import com.mojang.serialization.DataResult;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.JsonOps;
 import net.cristellib.CristelLibExpectPlatform;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
@@ -25,9 +25,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
-import java.util.function.BiFunction;
-import java.util.function.Predicate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 public class TerrablenderUtil {
@@ -87,7 +87,7 @@ public class TerrablenderUtil {
             for(int i = 0; i < jsonArray.size(); i++){
                 JsonObject e = jsonArray.get(i).getAsJsonObject();
                 String b = e.get("biome").getAsString();
-                ResourceKey<Biome> r = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(b));
+                ResourceKey<Biome> r = ResourceKey.create(Registries.BIOME, new ResourceLocation(b));
                 JsonObject jo = e.get("parameters").getAsJsonObject();
 
                 Climate.ParameterPoint point = new Gson().fromJson(jo, Climate.ParameterPoint.class);

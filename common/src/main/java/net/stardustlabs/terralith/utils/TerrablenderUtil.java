@@ -80,7 +80,7 @@ public class TerrablenderUtil {
 
         try (InputStreamReader reader = new InputStreamReader(im)) {
             JsonElement el = JsonParser.parseReader(reader);
-            if (!el.isJsonObject()) throw new RuntimeException("Input stream is on JsonElement");
+            if (!el.isJsonObject()) throw new RuntimeException("Input stream is no JsonObject");
             List<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> list = new ArrayList<>();
             JsonObject o = el.getAsJsonObject();
             JsonArray jsonArray = o.get("generator").getAsJsonObject().get("biome_source").getAsJsonObject().get("biomes").getAsJsonArray();
@@ -90,18 +90,11 @@ public class TerrablenderUtil {
                 ResourceKey<Biome> r = ResourceKey.create(Registries.BIOME, new ResourceLocation(b));
                 JsonObject jo = e.get("parameters").getAsJsonObject();
 
-                Climate.ParameterPoint point = new Gson().fromJson(jo, Climate.ParameterPoint.class);
-                if(point == null) {
-                    Terralith.LOGGER.error("Point for location: " + b + " is null");
-                    continue;
-                }
 
-                if(r == null) {
-                    Terralith.LOGGER.error("ResourceKey<Biome> for location: " + b + " is null");
-                    continue;
-                }
+                Climate.ParameterPoint p = readConfig(jo, Climate.ParameterPoint.CODEC, JsonOps.INSTANCE);
 
-                Pair<Climate.ParameterPoint, ResourceKey<Biome>> pair = new Pair<>(point, r);
+
+                Pair<Climate.ParameterPoint, ResourceKey<Biome>> pair = new Pair<>(p, r);
                 list.add(pair);
             }
 

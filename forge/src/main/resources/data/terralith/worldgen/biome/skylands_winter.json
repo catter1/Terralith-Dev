@@ -25,7 +25,8 @@
       "terralith:skylands/winter/floating_islands",
       "terralith:skylands/winter/extend_down_high",
       "terralith:skylands/winter/extend_down",
-      "terralith:skylands/dirt_tops"
+      "terralith:skylands/dirt_tops",
+      "terralith:skylands/winter/grassy_tops"
     ],
     [
       "minecraft:lake_lava_underground",
@@ -81,7 +82,6 @@
       "terralith:skylands/lichen",
       "minecraft:glow_lichen",
       "terralith:skylands/winter/trees",
-      "terralith:skylands/winter/grassy_tops",
       "minecraft:flower_default",
       "minecraft:patch_grass_badlands",
       "minecraft:brown_mushroom_normal",
@@ -150,7 +150,6 @@
         "maxCount": 1
       }
     ],
-    "creature": [],
     "ambient": [
       {
         "type": "minecraft:bat",

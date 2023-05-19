@@ -23,8 +23,6 @@
   "features": [
     [],
     [
-            "terralith:taiga/siberian/trees_new",
-      "terralith:taiga/siberian/trees_new_orange",
       "minecraft:lake_lava_underground",
       "minecraft:lake_lava_surface"
     ],
@@ -75,6 +73,8 @@
     ],
     [
       "minecraft:glow_lichen",
+      "terralith:taiga/siberian/trees_new",
+      "terralith:taiga/siberian/trees_new_orange",
       "minecraft:patch_large_fern",
       "minecraft:flower_default",
       "minecraft:patch_grass_taiga_2",

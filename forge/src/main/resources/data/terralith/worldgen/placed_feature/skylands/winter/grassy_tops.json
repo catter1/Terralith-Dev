@@ -42,7 +42,9 @@
 							0
 						],
 						"blocks": [
-							"minecraft:stone","diorite","calcite"
+							"minecraft:stone",
+							"diorite",
+							"calcite"
 						]
 					},
 					{

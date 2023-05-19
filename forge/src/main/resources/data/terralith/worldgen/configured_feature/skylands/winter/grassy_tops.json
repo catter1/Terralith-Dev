@@ -19,63 +19,9 @@
           "state": {
             "Name": "minecraft:grass_block",
             "Properties": {
-              "snowy": "true"
+              "snowy": "false"
             }
           }
-        }
-      },
-      {
-        "height": 1,
-        "provider": {
-          "type": "minecraft:noise_provider",
-          "seed": 56,
-          "noise": {
-            "firstOctave": -4,
-            "amplitudes": [
-              1.4,
-              1,
-              1.25
-            ]
-          },
-          "scale": 1,
-          "states": [
-            {
-              "Name": "minecraft:snow",
-              "Properties": {
-                "layers": "1"
-              }
-            },
-            {
-              "Name": "minecraft:snow",
-              "Properties": {
-                "layers": "1"
-              }
-            },
-            {
-              "Name": "minecraft:snow",
-              "Properties": {
-                "layers": "1"
-              }
-            },
-            {
-              "Name": "minecraft:snow",
-              "Properties": {
-                "layers": "1"
-              }
-            },
-            {
-              "Name": "minecraft:snow",
-              "Properties": {
-                "layers": "1"
-              }
-            },
-            {
-              "Name": "minecraft:snow",
-              "Properties": {
-                "layers": "1"
-              }
-            }
-          ]
         }
       }
     ]

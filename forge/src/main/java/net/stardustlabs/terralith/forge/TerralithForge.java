@@ -1,5 +1,8 @@
 package net.stardustlabs.terralith.forge;
 
+import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.data.worldgen.biome.OverworldBiomes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -8,6 +11,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.stardustlabs.terralith.Terralith;
+import net.stardustlabs.terralith.TerralithRL;
+import net.stardustlabs.terralith.utils.PreLoadTerralithBiomes;
 import net.stardustlabs.terralith.utils.TerrablenderUtil;
 
 @Mod(Terralith.MOD_ID)
@@ -19,17 +24,13 @@ public class TerralithForge {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         Terralith.init();
 
-        /*
         if(Terralith.MODE.equals(Terralith.Mode.TERRABLENDER)) {
             for(String biome : PreLoadTerralithBiomes.getBiomeFiles()){
                 ResourceLocation location = new TerralithRL(biome);
-                if(BuiltinRegistries.BIOME.containsKey(location)) continue;
                 BIOMES.register(biome, OverworldBiomes::theVoid);
             }
             BIOMES.register(bus);
         }
-
-         */
 
 
 

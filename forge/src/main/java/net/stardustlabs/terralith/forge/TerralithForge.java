@@ -1,8 +1,6 @@
 package net.stardustlabs.terralith.forge;
 
-import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.biome.OverworldBiomes;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -11,7 +9,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.stardustlabs.terralith.Terralith;
-import net.stardustlabs.terralith.TerralithRL;
 import net.stardustlabs.terralith.utils.PreLoadTerralithBiomes;
 import net.stardustlabs.terralith.utils.TerrablenderUtil;
 

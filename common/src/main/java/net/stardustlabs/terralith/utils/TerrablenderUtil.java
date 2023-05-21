@@ -113,8 +113,10 @@ public class TerrablenderUtil {
 
 
     public static void readOverworldSurfaceRules() {
+        /*
         SurfaceRules.RuleSource s = readSurfaceRulesFromNoise();
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, "terralith", s);
+         */
     }
 
 

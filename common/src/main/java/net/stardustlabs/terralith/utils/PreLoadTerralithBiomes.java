@@ -23,7 +23,7 @@ public class PreLoadTerralithBiomes {
         try {
             walk(CristelLibExpectPlatform.getResourceDirectory(Terralith.HIGHEST_MOD_ID, "data/terralith/worldgen/biome"), Files::exists, (path, file) -> {
                 if (Files.isRegularFile(file) && file.getFileName().toString().endsWith(".json")) {
-                    paths.add(getBiomeName(path));
+                    paths.add(getBiomeName(file));
                 }
                 return true;
             }, true, Integer.MAX_VALUE);

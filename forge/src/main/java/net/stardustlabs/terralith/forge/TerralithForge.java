@@ -24,14 +24,10 @@ public class TerralithForge {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         Terralith.init();
 
-        if(Terralith.MODE.equals(Terralith.Mode.TERRABLENDER)) {
-            for(String biome : PreLoadTerralithBiomes.getBiomeFiles()){
-                ResourceLocation location = new TerralithRL(biome);
-                BIOMES.register(biome, OverworldBiomes::theVoid);
-            }
-            BIOMES.register(bus);
+        for(String biome : PreLoadTerralithBiomes.getBiomeFiles()){
+            BIOMES.register(biome, OverworldBiomes::theVoid);
         }
-
+        BIOMES.register(bus);
 
 
         if(Terralith.isTerrablenderLoaded()) bus.addListener(this::terraBlenderSetup);

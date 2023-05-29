@@ -11,7 +11,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.stardustlabs.terralith.Terralith;
 import net.stardustlabs.terralith.utils.PreLoadTerralithBiomes;
 import net.stardustlabs.terralith.utils.TerrablenderUtil;
-import net.cristellib.builtinpacks.BuiltInDataPacks;
 
 @Mod(Terralith.MOD_ID)
 public class TerralithForge {
@@ -21,13 +20,19 @@ public class TerralithForge {
     public TerralithForge(){
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
+
+        if (Terralith.isTerrablenderLoaded()) {
+            bus.addListener(this::terraBlenderSetup);
+        } else {
+            Terralith.LOGGER.info("Terrablender not detected");
+            Terralith.init();
+        }
+
         for(String biome : PreLoadTerralithBiomes.getBiomeFiles()){
             BIOMES.register(biome, OverworldBiomes::theVoid);
         }
         BIOMES.register(bus);
 
-
-        if(Terralith.isTerrablenderLoaded()) bus.addListener(this::terraBlenderSetup);
 
         Terralith.LOGGER.info("Terralith has been initialized");
     }
@@ -37,8 +42,10 @@ public class TerralithForge {
             if(Terralith.MODE.equals(Terralith.Mode.TERRABLENDER)){
                 TerrablenderUtil.registerRegions();
                 TerrablenderUtil.readOverworldSurfaceRules();
+                Terralith.LOGGER.info("Terrablender loaded and compatibility enabled");
             } else {
-                BuiltInDataPacks.registerPack("Terralith Default", "resources/terralith_default", Terralith.HIGHEST_MOD_ID, () -> Terralith.MODE.equals(Terralith.Mode.DEFAULT));
+                Terralith.LOGGER.info("Terrablender loaded, but compatibility is disabled");
+                Terralith.init();
             }
         });
     }

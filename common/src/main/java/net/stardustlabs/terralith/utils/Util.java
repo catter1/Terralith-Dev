@@ -14,11 +14,12 @@ public class Util {
 	public static Terralith.Mode getMode(){
 		ConfigUtil.createConfig();
 		if(!Terralith.isTerrablenderLoaded()){
+			Terralith.LOGGER.info("Overriding config for '{}': {} (Terrablender not installed)", ConfigUtil.MODE_NAME, "FALSE");
 			return Terralith.Mode.DEFAULT;
 		}
 		boolean mode = ConfigUtil.readConfigMode();
 		try {
-			Terralith.LOGGER.info("Loading config for '{}': '{}'", ConfigUtil.MODE_NAME, mode);
+			Terralith.LOGGER.info("Loading config for '{}': {}", ConfigUtil.MODE_NAME, Boolean.toString(mode).toUpperCase());
 			if (mode) {
 				return Terralith.Mode.TERRABLENDER;
 			} else {
@@ -34,11 +35,12 @@ public class Util {
 	public static Terralith.Cursed getCursed(){
 		ConfigUtil.createConfig();
 		if(!Terralith.isTerrablenderLoaded()){
+			Terralith.LOGGER.info("Overriding config for '{}': {} (Terrablender not installed)", ConfigUtil.MODE_NAME, "NONE");
 			return Terralith.Cursed.NONE;
 		}
 		String cursed = ConfigUtil.readConfigCursed();
 		try {
-			Terralith.LOGGER.info("Loading config for '{}': '{}'", ConfigUtil.CURSED_NAME, cursed);
+			Terralith.LOGGER.info("Loading config for '{}': {}", ConfigUtil.CURSED_NAME, cursed.toUpperCase());
 			if (cursed.equals("some")) {
 				return Terralith.Cursed.SOME;
 			} else if (cursed.equals("very")) {

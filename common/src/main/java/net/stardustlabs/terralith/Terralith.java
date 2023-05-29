@@ -17,7 +17,8 @@ public class Terralith {
     public static final String minTerraBlenderVersion = "1.2.0.126";
 
     public static void init() {
-        BuiltInDataPacks.registerPack("Terralith Default", "resources/terralith_default", HIGHEST_MOD_ID, () -> MODE.equals(Mode.DEFAULT));
+        BuiltInDataPacks.registerPack("Terralith", "", HIGHEST_MOD_ID, () -> true);
+        LOGGER.info("Datapack registered with CristelLib");
     }
 
     public enum Mode {

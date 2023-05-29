@@ -9,7 +9,7 @@ public class TerralithFabric implements ModInitializer {
     @Override
     public void onInitialize() {
 
-        if(Terralith.MODE.equals(Terralith.Mode.TERRABLENDER)){
+        if (Terralith.isTerrablenderLoaded() && Terralith.MODE.equals(Terralith.Mode.TERRABLENDER)) {
             TerrablenderUtil.registerRegions();
             TerrablenderUtil.readOverworldSurfaceRules();
         } else {

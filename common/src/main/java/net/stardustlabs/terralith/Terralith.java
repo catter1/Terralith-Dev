@@ -27,7 +27,8 @@ public class Terralith {
 
     public enum Cursed {
         NONE,
-        SKYLANDS
+        SOME,
+        VERY
     }
 
     public static boolean isTerrablenderLoaded(){

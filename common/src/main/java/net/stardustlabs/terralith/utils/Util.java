@@ -16,12 +16,13 @@ public class Util {
 		if(!Terralith.isTerrablenderLoaded()){
 			return Terralith.Mode.DEFAULT;
 		}
-		boolean mode = ConfigUtil.readConfig(ConfigUtil.MODE_NAME);
+		boolean mode = ConfigUtil.readConfigMode();
 		try {
+			Terralith.LOGGER.info("Loading config for '{}': '{}'", ConfigUtil.MODE_NAME, mode);
 			if (mode) {
-				return Terralith.Mode.valueOf("TERRABLENDER");
+				return Terralith.Mode.TERRABLENDER;
 			} else {
-				return Terralith.Mode.valueOf("DEFAULT");
+				return Terralith.Mode.DEFAULT;
 			}
 		}
 		catch (IllegalArgumentException e){
@@ -35,12 +36,15 @@ public class Util {
 		if(!Terralith.isTerrablenderLoaded()){
 			return Terralith.Cursed.NONE;
 		}
-		boolean cursed = ConfigUtil.readConfig(ConfigUtil.CURSED_NAME);
+		String cursed = ConfigUtil.readConfigCursed();
 		try {
-			if (cursed) {
-				return Terralith.Cursed.valueOf("SKYLANDS");
+			Terralith.LOGGER.info("Loading config for '{}': '{}'", ConfigUtil.CURSED_NAME, cursed);
+			if (cursed.equals("some")) {
+				return Terralith.Cursed.SOME;
+			} else if (cursed.equals("very")) {
+				return Terralith.Cursed.VERY;
 			} else {
-				return Terralith.Cursed.valueOf("NONE");
+				return Terralith.Cursed.NONE;
 			}
 		}
 		catch (IllegalArgumentException e){

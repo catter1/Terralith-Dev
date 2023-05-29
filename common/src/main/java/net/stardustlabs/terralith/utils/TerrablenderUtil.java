@@ -16,6 +16,7 @@ import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.stardustlabs.terralith.Terralith;
 import net.stardustlabs.terralith.TerralithRL;
 import net.stardustlabs.terralith.terrablender.TerralithRegion;
+import net.stardustlabs.terralith.terrablender.TerralithSkylandRegion;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
@@ -67,7 +68,7 @@ public class TerrablenderUtil {
     }
 
 
-    public static List<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> readParameterPoints() {
+    public static List<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> readParameterPoints(boolean doCurse) {
         InputStream im;
         try {
             Path path = CristelLibExpectPlatform.getResourceDirectory(Terralith.HIGHEST_MOD_ID, OVERWORLD);
@@ -87,9 +88,9 @@ public class TerrablenderUtil {
             for(int i = 0; i < jsonArray.size(); i++){
                 JsonObject e = jsonArray.get(i).getAsJsonObject();
                 String b = e.get("biome").getAsString();
-                if (b.contains("skyland") && Terralith.CURSED == Terralith.Cursed.NONE) continue;
+                if (!b.contains("skyland") && doCurse) continue;
                 ResourceLocation location = new ResourceLocation(b);
-                if(location.getNamespace().equals("minecraft") && (!b.contains("ocean") || Terralith.CURSED == Terralith.Cursed.SKYLANDS)) continue;
+                if(location.getNamespace().equals("minecraft") && (!b.contains("ocean") || Terralith.CURSED == Terralith.Cursed.SOME)) continue;
                 ResourceKey<Biome> r = ResourceKey.create(Registry.BIOME_REGISTRY, location);
                 JsonObject jo = e.get("parameters").getAsJsonObject();
 
@@ -121,6 +122,7 @@ public class TerrablenderUtil {
 
     public static void registerRegions(){
         Regions.register(new TerralithRegion(new TerralithRL("overworld"), 10));
+        if (Terralith.CURSED == Terralith.Cursed.VERY) Regions.register(new TerralithSkylandRegion(new TerralithRL("skylands"), 2));
         Terralith.LOGGER.info("Terralith region created!");
     }
 

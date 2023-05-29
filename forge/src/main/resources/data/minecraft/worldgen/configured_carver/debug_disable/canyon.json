@@ -28,7 +28,7 @@
         "Name": "minecraft:warped_button"
       }
     },
-    "probability": 0,//0.01,
+    "probability": 0,
     "y": {
       "min_inclusive": {
         "absolute": 10

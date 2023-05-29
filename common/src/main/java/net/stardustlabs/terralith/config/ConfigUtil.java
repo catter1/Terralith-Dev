@@ -34,7 +34,7 @@ public class ConfigUtil {
 
         JsonObject file = new JsonObject();
         file.addProperty(MODE_NAME, true);
-        file.addProperty(CURSED_NAME, false);
+        file.addProperty(CURSED_NAME, "none");
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -54,39 +54,47 @@ public class ConfigUtil {
             fileWriter.write("   Enabling will allow for better biome rarity and compatibility with other mods." + System.getProperty("line.separator"));
             fileWriter.write("   Disabling will allow Terralith to function as it would a datapack." + System.getProperty("line.separator"));
             fileWriter.write(System.getProperty("line.separator"));
-            fileWriter.write("cursed-skylands: false by default" + System.getProperty("line.separator"));
+            fileWriter.write("cursed-skylands: \"none\" by default" + System.getProperty("line.separator"));
             fileWriter.write("   This option determines whether Skylands will be cursed - ONLY takes effect when Terrablender compatibility is enabled!" + System.getProperty("line.separator"));
-            fileWriter.write("   Enabling will curse-ify Skyland generation. DO NOT do this in a real world!" + System.getProperty("line.separator"));
-            fileWriter.write("   Disabling should be used in most cases, and allows Skylands to generate as they would normally." + System.getProperty("line.separator"));
-            fileWriter.write("   When using cursed generation, some Skylands will generate on top of each other, be very large, and sometimes \"cancel\" out biomes such as Mirage Isles." + System.getProperty("line.separator"));
-            fileWriter.write("   It should be noted that is Terrablender compatibility is disabled, the cursed generation will not occur, no matter what." + System.getProperty("line.separator"));
+            fileWriter.write("   The options consist of \"none\", \"some\", and \"very\". DO NOT use \"some\" or \"very\" in a real world, unless you know what you're doing!" + System.getProperty("line.separator"));
+            fileWriter.write("   None - Skylands generate as normally as they can" + System.getProperty("line.separator"));
+            fileWriter.write("   Some - Skylands can generate on top of each other, be very large, and sometimes \"cancel\" out ocean-based biomes such as Mirage Isles." + System.getProperty("line.separator"));
+            fileWriter.write("   Very - Skylands can generate anywhere and everywhere. This includes on each other, above land, and *in* land!" + System.getProperty("line.separator"));
+            fileWriter.write("   It should be noted that if Terrablender compatibility is disabled, the cursed generation will not occur, no matter what." + System.getProperty("line.separator"));
             fileWriter.write("      *Cursed option provided in loving memory of catter's pain and suffering*");
         } catch (IOException ex) {
             Terralith.LOGGER.error("Couldn't create README file", ex);
         }
     }
 
-    public static boolean readConfig(String option){
-        // option must be one of MODE_NAME or DISABLED_NAME
-        if (option.equals(CURSED_NAME)) return false;
-        InputStream in;
-        try {
-            in = Files.newInputStream(FILE_PATH);
-        } catch (IOException e) {
-            Terralith.LOGGER.error("Couldn't read " + FILE_PATH);
-            return false;
-        }
-        try(InputStreamReader reader = new InputStreamReader(in)) {
+    public static boolean readConfigMode(){
+        try (InputStream in = Files.newInputStream(FILE_PATH);
+             InputStreamReader reader = new InputStreamReader(in)) {
             if(JsonParser.parseReader(reader) instanceof JsonObject o){
-                JsonElement element = o.get(option);
-                if(element instanceof JsonPrimitive primitive && primitive.isBoolean()){
+                JsonElement element = o.get(MODE_NAME);
+                if (element instanceof JsonPrimitive primitive && primitive.isBoolean()) {
                     return element.getAsBoolean();
                 }
             }
-        } catch (Exception errorMsg) {
-            Terralith.LOGGER.error("Couldn't read " + FILE_PATH);
+        } catch (IOException e) {
+            Terralith.LOGGER.error("Couldn't read " + FILE_PATH, e);
         }
         return false;
+    }
+
+    public static String readConfigCursed(){
+        try (InputStream in = Files.newInputStream(FILE_PATH);
+             InputStreamReader reader = new InputStreamReader(in)) {
+            if(JsonParser.parseReader(reader) instanceof JsonObject o){
+                JsonElement element = o.get(CURSED_NAME);
+                if (element instanceof JsonPrimitive primitive && primitive.isString()) {
+                    return element.getAsString();
+                }
+            }
+        } catch (IOException e) {
+            Terralith.LOGGER.error("Couldn't read " + FILE_PATH, e);
+        }
+        return "none";
     }
 
 }

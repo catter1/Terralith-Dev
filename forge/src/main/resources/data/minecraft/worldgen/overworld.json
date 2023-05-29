@@ -1568,7 +1568,7 @@
                   }
                 },
                 {
-                  "location": -0.2, //swampz
+                  "location": -0.2,
                   "derivative": 0,
                   "value": {
                     "coordinate": "weirdness",
@@ -1815,7 +1815,7 @@
                   }
                 },
                 {
-                  "location": 0.25, //new highlands
+                  "location": 0.25,
                   "derivative": 0,
                   "value": {
                     "coordinate": "weirdness",
@@ -1935,7 +1935,7 @@
                   "location": 0.525,
                   "derivative": 0,
                   "value": {
-                    "coordinate": "weirdness", //le inland canyon
+                    "coordinate": "weirdness",
                     "points": [
                       {
                         "location": -0.65,
@@ -3226,7 +3226,7 @@
                 {
                   "location": -0.2,
                   "derivative": 0,
-                  "value": { //swampz
+                  "value": {
                     "coordinate": "weirdness",
                     "points": [
                       {
@@ -3292,7 +3292,7 @@
                   }
                 },
                 {
-                  "location": 0.25, //new highlands
+                  "location": 0.25,
                   "derivative": 0,
                   "value": {
                     "coordinate": "weirdness",
@@ -4386,7 +4386,7 @@
             "Name": "minecraft:bedrock"
           }
         }
-      }, //bedrock
+      },
       {
         "type": "minecraft:condition",
         "if_true": {
@@ -11623,7 +11623,7 @@
             }
           ]
         }
-      }, //above preliminary
+      },
       {
         "type": "minecraft:condition",
         "if_true": {
@@ -11650,7 +11650,7 @@
             }
           ]
         }
-      } //thermal caves
+      }
     ]
   },
   "structures": {

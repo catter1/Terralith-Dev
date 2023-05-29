@@ -13,14 +13,14 @@ import terrablender.api.RegionType;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class TerralithRegion extends Region {
-    public TerralithRegion(ResourceLocation name, int weight) {
+public class TerralithSkylandRegion extends Region {
+    public TerralithSkylandRegion(ResourceLocation name, int weight) {
         super(name, RegionType.OVERWORLD, weight);
     }
 
     @Override
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
-        List<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pairList = TerrablenderUtil.readParameterPoints(false);
+        List<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> pairList = TerrablenderUtil.readParameterPoints(true);
         for(Pair<Climate.ParameterPoint, ResourceKey<Biome>> p : pairList){
             mapper.accept(p);
         }

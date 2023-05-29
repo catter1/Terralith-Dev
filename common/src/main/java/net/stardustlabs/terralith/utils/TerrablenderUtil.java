@@ -87,9 +87,9 @@ public class TerrablenderUtil {
             for(int i = 0; i < jsonArray.size(); i++){
                 JsonObject e = jsonArray.get(i).getAsJsonObject();
                 String b = e.get("biome").getAsString();
-                if (b.contains("skyland") && Terralith.DISABLED == Terralith.Disabled.NONE) continue;
+                if (b.contains("skyland") && Terralith.CURSED == Terralith.Cursed.NONE) continue;
                 ResourceLocation location = new ResourceLocation(b);
-                if(location.getNamespace().equals("minecraft")) continue;
+                if(location.getNamespace().equals("minecraft") && (!b.contains("ocean") || Terralith.CURSED == Terralith.Cursed.SKYLANDS)) continue;
                 ResourceKey<Biome> r = ResourceKey.create(Registry.BIOME_REGISTRY, location);
                 JsonObject jo = e.get("parameters").getAsJsonObject();
 

@@ -13,7 +13,7 @@ public class Terralith {
     public static final Logger LOGGER = LogManager.getLogger("terralith");
 
     public static Mode MODE = Util.getMode();
-    public static Disabled DISABLED = Util.getDisabled();
+    public static Cursed CURSED = Util.getCursed();
     public static final String minTerraBlenderVersion = "1.2.0.126";
 
     public static void init() {
@@ -25,7 +25,7 @@ public class Terralith {
         DEFAULT
     }
 
-    public enum Disabled {
+    public enum Cursed {
         NONE,
         SKYLANDS
     }

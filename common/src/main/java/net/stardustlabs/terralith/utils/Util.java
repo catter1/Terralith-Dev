@@ -5,7 +5,6 @@ import net.stardustlabs.terralith.config.ConfigUtil;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.LinkOption;
 import java.nio.file.Path;
 
 
@@ -31,22 +30,22 @@ public class Util {
 		}
 	}
 
-	public static Terralith.Disabled getDisabled(){
+	public static Terralith.Cursed getCursed(){
 		ConfigUtil.createConfig();
 		if(!Terralith.isTerrablenderLoaded()){
-			return Terralith.Disabled.NONE;
+			return Terralith.Cursed.NONE;
 		}
-		boolean disabled = ConfigUtil.readConfig(ConfigUtil.DISABLED_NAME);
+		boolean cursed = ConfigUtil.readConfig(ConfigUtil.CURSED_NAME);
 		try {
-			if (disabled) {
-				return Terralith.Disabled.valueOf("SKYLANDS");
+			if (cursed) {
+				return Terralith.Cursed.valueOf("SKYLANDS");
 			} else {
-				return Terralith.Disabled.valueOf("NONE");
+				return Terralith.Cursed.valueOf("NONE");
 			}
 		}
 		catch (IllegalArgumentException e){
-			Terralith.LOGGER.warn("Invalid Mode '{}' for option '{}'", disabled, "disabled");
-			return Terralith.Disabled.NONE;
+			Terralith.LOGGER.warn("Invalid Mode '{}' for option '{}'", cursed, "cursed");
+			return Terralith.Cursed.NONE;
 		}
 	}
 

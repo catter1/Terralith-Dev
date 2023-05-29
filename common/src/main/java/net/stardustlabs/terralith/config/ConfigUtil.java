@@ -20,7 +20,7 @@ public class ConfigUtil {
     public static final Path FILE_PATH = TERRALITH_CONFIG_DIR.resolve("config.json");
     public static final Path README_PATH = TERRALITH_CONFIG_DIR.resolve("README.txt");
     public static final String MODE_NAME = "terrablender-compatible";
-    public static final String DISABLED_NAME = "disable-skylands";
+    public static final String CURSED_NAME = "cursed-skylands";
 
     public static void createConfig(){
         try {
@@ -34,7 +34,7 @@ public class ConfigUtil {
 
         JsonObject file = new JsonObject();
         file.addProperty(MODE_NAME, true);
-        file.addProperty(DISABLED_NAME, false);
+        file.addProperty(CURSED_NAME, false);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -54,12 +54,13 @@ public class ConfigUtil {
             fileWriter.write("   Enabling will allow for better biome rarity and compatibility with other mods." + System.getProperty("line.separator"));
             fileWriter.write("   Disabling will allow Terralith to function as it would a datapack." + System.getProperty("line.separator"));
             fileWriter.write(System.getProperty("line.separator"));
-            fileWriter.write("disable-skylands: false by default" + System.getProperty("line.separator"));
-            fileWriter.write("   This option determines whether Skylands will generate - ONLY takes effect when Terrablender compatibility is enabled!" + System.getProperty("line.separator"));
-            fileWriter.write("   Enabling will disable Skyland generation. You may want this due to Terrablender creating very odd, unintended, and unavoidable Skylands." + System.getProperty("line.separator"));
-            fileWriter.write("   Disabling will allow Skylands to generate, but you risk having the weird Skyland generation." + System.getProperty("line.separator"));
-            fileWriter.write("   For example, some Skylands will generate on top of each other, be very large, and sometimes \"cancel\" out biomes such as Mirage Isles." + System.getProperty("line.separator"));
-            fileWriter.write("   It should be noted that is Terrablender Compatibility is disabled, the odd generation will not occur, no matter what.");
+            fileWriter.write("cursed-skylands: false by default" + System.getProperty("line.separator"));
+            fileWriter.write("   This option determines whether Skylands will be cursed - ONLY takes effect when Terrablender compatibility is enabled!" + System.getProperty("line.separator"));
+            fileWriter.write("   Enabling will curse-ify Skyland generation. DO NOT do this in a real world!" + System.getProperty("line.separator"));
+            fileWriter.write("   Disabling should be used in most cases, and allows Skylands to generate as they would normally." + System.getProperty("line.separator"));
+            fileWriter.write("   When using cursed generation, some Skylands will generate on top of each other, be very large, and sometimes \"cancel\" out biomes such as Mirage Isles." + System.getProperty("line.separator"));
+            fileWriter.write("   It should be noted that is Terrablender compatibility is disabled, the cursed generation will not occur, no matter what." + System.getProperty("line.separator"));
+            fileWriter.write("      *Cursed option provided in loving memory of catter's pain and suffering*");
         } catch (IOException ex) {
             Terralith.LOGGER.error("Couldn't create README file", ex);
         }
@@ -67,6 +68,7 @@ public class ConfigUtil {
 
     public static boolean readConfig(String option){
         // option must be one of MODE_NAME or DISABLED_NAME
+        if (option.equals(CURSED_NAME)) return false;
         InputStream in;
         try {
             in = Files.newInputStream(FILE_PATH);

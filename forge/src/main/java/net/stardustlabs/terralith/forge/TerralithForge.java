@@ -11,6 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.stardustlabs.terralith.Terralith;
 import net.stardustlabs.terralith.utils.PreLoadTerralithBiomes;
 import net.stardustlabs.terralith.utils.TerrablenderUtil;
+import net.cristellib.builtinpacks.BuiltInDataPacks;
 
 @Mod(Terralith.MOD_ID)
 public class TerralithForge {
@@ -19,7 +20,6 @@ public class TerralithForge {
 
     public TerralithForge(){
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        Terralith.init();
 
         for(String biome : PreLoadTerralithBiomes.getBiomeFiles()){
             BIOMES.register(biome, OverworldBiomes::theVoid);
@@ -28,6 +28,8 @@ public class TerralithForge {
 
 
         if(Terralith.isTerrablenderLoaded()) bus.addListener(this::terraBlenderSetup);
+
+        Terralith.LOGGER.info("Terralith has been initialized");
     }
 
     private void terraBlenderSetup(final FMLCommonSetupEvent event) {
@@ -35,6 +37,8 @@ public class TerralithForge {
             if(Terralith.MODE.equals(Terralith.Mode.TERRABLENDER)){
                 TerrablenderUtil.registerRegions();
                 TerrablenderUtil.readOverworldSurfaceRules();
+            } else {
+                BuiltInDataPacks.registerPack("Terralith Default", "resources/terralith_default", Terralith.HIGHEST_MOD_ID, () -> Terralith.MODE.equals(Terralith.Mode.DEFAULT));
             }
         });
     }

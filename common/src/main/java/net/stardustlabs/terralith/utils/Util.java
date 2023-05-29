@@ -17,7 +17,7 @@ public class Util {
 		if(!Terralith.isTerrablenderLoaded()){
 			return Terralith.Mode.DEFAULT;
 		}
-		boolean mode = ConfigUtil.readConfig();
+		boolean mode = ConfigUtil.readConfig(ConfigUtil.MODE_NAME);
 		try {
 			if (mode) {
 				return Terralith.Mode.valueOf("TERRABLENDER");
@@ -27,11 +27,30 @@ public class Util {
 		}
 		catch (IllegalArgumentException e){
 			Terralith.LOGGER.warn("Invalid Mode '{}' for option '{}'", mode, "mode");
-			return Terralith.Mode.DEFAULT;
+			return Terralith.Mode.TERRABLENDER;
+		}
+	}
+
+	public static Terralith.Disabled getDisabled(){
+		ConfigUtil.createConfig();
+		if(!Terralith.isTerrablenderLoaded()){
+			return Terralith.Disabled.NONE;
+		}
+		boolean disabled = ConfigUtil.readConfig(ConfigUtil.DISABLED_NAME);
+		try {
+			if (disabled) {
+				return Terralith.Disabled.valueOf("SKYLANDS");
+			} else {
+				return Terralith.Disabled.valueOf("NONE");
+			}
+		}
+		catch (IllegalArgumentException e){
+			Terralith.LOGGER.warn("Invalid Mode '{}' for option '{}'", disabled, "disabled");
+			return Terralith.Disabled.NONE;
 		}
 	}
 
 	public static void createDirectoriesSafe(Path path) throws IOException {
-		Files.createDirectories(Files.exists(path, new LinkOption[0]) ? path.toRealPath() : path);
+		Files.createDirectories(Files.exists(path) ? path.toRealPath() : path);
 	}
 }

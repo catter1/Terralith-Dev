@@ -32,9 +32,9 @@ import java.util.Optional;
 
 public class TerrablenderUtil {
 
-    private static final String OVERWORLD = "resources/terralith_default/data/minecraft/dimension/overworld.json";
+    private static final String OVERWORLD = "data/minecraft/dimension/overworld.json";
 
-    private static final String NOISE = "resources/terralith_default/data/minecraft/worldgen/noise_settings/overworld.json";
+    private static final String NOISE = "data/minecraft/worldgen/noise_settings/overworld.json";
 
 
     public static SurfaceRules.RuleSource readSurfaceRulesFromNoise() {
@@ -53,7 +53,7 @@ public class TerrablenderUtil {
 
             return readConfig(element, SurfaceRules.RuleSource.CODEC, JsonOps.INSTANCE);
         } catch (Exception errorMsg) {
-            throw new IllegalArgumentException("Couldn't read " + NOISE + ", crashing instead.");
+            throw new IllegalArgumentException("Couldn't parse " + NOISE + ", crashing instead.");
         }
     }
 
@@ -87,6 +87,7 @@ public class TerrablenderUtil {
             for(int i = 0; i < jsonArray.size(); i++){
                 JsonObject e = jsonArray.get(i).getAsJsonObject();
                 String b = e.get("biome").getAsString();
+                if (b.contains("skyland") && Terralith.DISABLED == Terralith.Disabled.NONE) continue;
                 ResourceLocation location = new ResourceLocation(b);
                 if(location.getNamespace().equals("minecraft")) continue;
                 ResourceKey<Biome> r = ResourceKey.create(Registry.BIOME_REGISTRY, location);
@@ -100,10 +101,10 @@ public class TerrablenderUtil {
 
             return list;
         } catch (FileNotFoundException e) {
-            Terralith.LOGGER.error("Couldn't read " + OVERWORLD + ", crashing instead");
+            Terralith.LOGGER.error("Couldn't find " + OVERWORLD + ", crashing instead");
             throw new RuntimeException(e);
         } catch (IOException | JsonSyntaxException e) {
-            Terralith.LOGGER.error("Couldn't read " + OVERWORLD + ", crashing instead");
+            Terralith.LOGGER.error("Couldn't parse " + OVERWORLD + ", crashing instead");
             e.printStackTrace();
             throw new RuntimeException(e);
         }
@@ -113,10 +114,8 @@ public class TerrablenderUtil {
 
 
     public static void readOverworldSurfaceRules() {
-        /*
         SurfaceRules.RuleSource s = readSurfaceRulesFromNoise();
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, "terralith", s);
-         */
     }
 
 

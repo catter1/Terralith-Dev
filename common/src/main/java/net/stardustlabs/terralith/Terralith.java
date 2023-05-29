@@ -10,9 +10,10 @@ public class Terralith {
 
     public static final String HIGHEST_MOD_ID = TerralithExpectPlatform.getPlatform().equals(TerralithExpectPlatform.Platform.FORGE) ? MOD_ID : MOD_ID + "_loader";
 
-    public static final Logger LOGGER = LogManager.getLogger("Terralith");
+    public static final Logger LOGGER = LogManager.getLogger("terralith");
 
     public static Mode MODE = Util.getMode();
+    public static Disabled DISABLED = Util.getDisabled();
     public static final String minTerraBlenderVersion = "1.2.0.126";
 
     public static void init() {
@@ -22,6 +23,11 @@ public class Terralith {
     public enum Mode {
         TERRABLENDER,
         DEFAULT
+    }
+
+    public enum Disabled {
+        NONE,
+        SKYLANDS
     }
 
     public static boolean isTerrablenderLoaded(){

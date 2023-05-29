@@ -27,6 +27,13 @@ public class PreLoadTerralithBiomes {
                 }
                 return true;
             }, true, Integer.MAX_VALUE);
+//
+//            walk(CristelLibExpectPlatform.getResourceDirectory(Terralith.HIGHEST_MOD_ID, "data/minecraft/worldgen/biome"), Files::exists, (path, file) -> {
+//                if (Files.isRegularFile(file) && file.getFileName().toString().endsWith(".json") && file.getFileName().toString().contains("ocean")) {
+//                    paths.add(getBiomeName(file));
+//                }
+//                return true;
+//            }, true, Integer.MAX_VALUE);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

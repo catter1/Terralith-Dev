@@ -29,7 +29,7 @@
     "fabricloader": ">=0.12.7",
     "fabric": "*",
     "minecraft": "~1.18.2",
-    "unfixed-seeds": "*",
+    "unfixed-seeds": ">=1.0.1",
 	"cristellib": "*"
   },
   "mixins": [

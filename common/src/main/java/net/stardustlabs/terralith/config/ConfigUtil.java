@@ -19,7 +19,7 @@ public class ConfigUtil {
 
     public static final Path FILE_PATH = TERRALITH_CONFIG_DIR.resolve("config.json");
     public static final Path README_PATH = TERRALITH_CONFIG_DIR.resolve("README.txt");
-    public static final String MODE_NAME = "terrablender-compatible";
+    public static final String MODE_NAME = "terrablender-compatibility";
     public static final String CURSED_NAME = "cursed-skylands";
 
     public static void createConfig(){
@@ -49,10 +49,11 @@ public class ConfigUtil {
         try (FileWriter fileWriter = new FileWriter(README_PATH.toFile())) {
             fileWriter.write("--- Terralith Config File Description ---" + System.getProperty("line.separator"));
             fileWriter.write(System.getProperty("line.separator"));
-            fileWriter.write("terrablender-compatible: true by default" + System.getProperty("line.separator"));
+            fileWriter.write("terrablender-compatibility: true by default" + System.getProperty("line.separator"));
             fileWriter.write("   This option determines whether Terralith should create a Terrablender region." + System.getProperty("line.separator"));
             fileWriter.write("   Enabling will allow for better biome rarity and compatibility with other mods." + System.getProperty("line.separator"));
             fileWriter.write("   Disabling will allow Terralith to function as it would a datapack." + System.getProperty("line.separator"));
+            fileWriter.write("   Note: If compatibility is disabled, but BYG or BoP are installed, compatibility will be forced." + System.getProperty("line.separator"));
             fileWriter.write(System.getProperty("line.separator"));
             fileWriter.write("cursed-skylands: \"none\" by default" + System.getProperty("line.separator"));
             fileWriter.write("   This option determines whether Skylands will be cursed - ONLY takes effect when Terrablender compatibility is enabled!" + System.getProperty("line.separator"));

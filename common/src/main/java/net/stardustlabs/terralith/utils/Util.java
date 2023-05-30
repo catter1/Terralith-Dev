@@ -35,7 +35,7 @@ public class Util {
 	public static Terralith.Cursed getCursed(){
 		ConfigUtil.createConfig();
 		if(!Terralith.isTerrablenderLoaded()){
-			Terralith.LOGGER.info("Overriding config for '{}': {} (Terrablender not installed)", ConfigUtil.MODE_NAME, "NONE");
+			Terralith.LOGGER.info("Overriding config for '{}': {} (Terrablender not installed)", ConfigUtil.CURSED_NAME, "NONE");
 			return Terralith.Cursed.NONE;
 		}
 		String cursed = ConfigUtil.readConfigCursed();

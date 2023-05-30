@@ -20,31 +20,32 @@ public class TerralithForge {
     public TerralithForge(){
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-
-        if (Terralith.isTerrablenderLoaded()) {
-            bus.addListener(this::terraBlenderSetup);
-        } else {
-            Terralith.LOGGER.info("Terrablender not detected");
-            Terralith.init();
-        }
-
         for(String biome : PreLoadTerralithBiomes.getBiomeFiles()){
             BIOMES.register(biome, OverworldBiomes::theVoid);
         }
         BIOMES.register(bus);
 
-
-        Terralith.LOGGER.info("Terralith has been initialized");
+        if (Terralith.isTerrablenderLoaded()) {
+            Terralith.LOGGER.info("Terrablender detected");
+            bus.addListener(this::terraBlenderSetup);
+        } else {
+            Terralith.LOGGER.info("Terrablender not detected");
+            Terralith.init();
+        }
     }
 
     private void terraBlenderSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            if(Terralith.MODE.equals(Terralith.Mode.TERRABLENDER)){
+            if(Terralith.MODE.equals(Terralith.Mode.TERRABLENDER)) {
+                Terralith.LOGGER.info("Terrablender compatibility enabled");
                 TerrablenderUtil.registerRegions();
                 TerrablenderUtil.readOverworldSurfaceRules();
-                Terralith.LOGGER.info("Terrablender loaded and compatibility enabled");
+            } else if (Terralith.isBiomeModLoaded()) {
+                Terralith.LOGGER.info("Terrablender compatibility disabled, but BYG or BoP detected: compatibility is forced");
+                TerrablenderUtil.registerRegions();
+                TerrablenderUtil.readOverworldSurfaceRules();
             } else {
-                Terralith.LOGGER.info("Terrablender loaded, but compatibility is disabled");
+                Terralith.LOGGER.info("Terrablender compatibility disabled");
                 Terralith.init();
             }
         });

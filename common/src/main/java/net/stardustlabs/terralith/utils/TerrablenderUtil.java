@@ -123,7 +123,6 @@ public class TerrablenderUtil {
     public static void registerRegions(){
         Regions.register(new TerralithRegion(new TerralithRL("overworld"), 10));
         if (Terralith.CURSED == Terralith.Cursed.VERY) Regions.register(new TerralithSkylandRegion(new TerralithRL("skylands"), 2));
-        Terralith.LOGGER.info("Terralith region created!");
     }
 
 

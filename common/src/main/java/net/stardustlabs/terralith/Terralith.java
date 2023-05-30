@@ -17,7 +17,7 @@ public class Terralith {
     public static final String minTerraBlenderVersion = "1.2.0.126";
 
     public static void init() {
-        BuiltInDataPacks.registerPack("Terralith", "", HIGHEST_MOD_ID, () -> true);
+        BuiltInDataPacks.registerPack("Terralith", "resources/terralith_default", HIGHEST_MOD_ID, () -> true);
         LOGGER.info("Datapack registered with CristelLib");
     }
 
@@ -33,6 +33,11 @@ public class Terralith {
     }
 
     public static boolean isTerrablenderLoaded(){
-        return TerralithExpectPlatform.isModLoadedWithVersion("terrablender", Terralith.minTerraBlenderVersion);
+        return TerralithExpectPlatform.isModLoadedWithVersion("terrablender", minTerraBlenderVersion);
+    }
+
+    public static boolean isBiomeModLoaded(){
+        if (TerralithExpectPlatform.isModLoaded("byg")) return true;
+        return TerralithExpectPlatform.isModLoaded("biomesoplenty");
     }
 }

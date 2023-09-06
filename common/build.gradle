@@ -9,6 +9,8 @@ dependencies {
 
     modImplementation "net:cristellib-fabric:${project.cristellib_version}"
     modImplementation "com.github.glitchfiend:TerraBlender-fabric:${rootProject.minecraft_version}-${rootProject.terrablender_version}"
+
+    implementation 'org.json:json:20230618'
 }
 
 publishing {
@@ -23,4 +25,8 @@ publishing {
     repositories {
         // Add repositories to publish to here.
     }
+}
+
+repositories {
+    mavenCentral()
 }

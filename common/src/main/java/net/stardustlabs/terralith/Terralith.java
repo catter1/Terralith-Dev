@@ -1,6 +1,7 @@
 package net.stardustlabs.terralith;
 
 import net.cristellib.builtinpacks.BuiltInDataPacks;
+import net.stardustlabs.terralith.config.TerralithConfig;
 import net.stardustlabs.terralith.utils.Util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +12,8 @@ public class Terralith {
     public static final String HIGHEST_MOD_ID = TerralithExpectPlatform.getPlatform().equals(TerralithExpectPlatform.Platform.FORGE) ? MOD_ID : MOD_ID + "_loader";
 
     public static final Logger LOGGER = LogManager.getLogger("terralith");
+
+    public static TerralithConfig CONFIG;
 
     public static Mode MODE = Util.getMode();
     public static Cursed CURSED = Util.getCursed();
@@ -39,5 +42,10 @@ public class Terralith {
     public static boolean isBiomeModLoaded(){
         if (TerralithExpectPlatform.isModLoaded("byg")) return true;
         return TerralithExpectPlatform.isModLoaded("biomesoplenty");
+    }
+
+    public static void setConfig(TerralithConfig config)
+    {
+        Terralith.CONFIG = config;
     }
 }

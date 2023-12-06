@@ -10,7 +10,8 @@ dependencies {
     modImplementation "net:cristellib-fabric:${project.cristellib_version}"
     modImplementation "com.github.glitchfiend:TerraBlender-fabric:${rootProject.minecraft_version}-${rootProject.terrablender_version}"
 
-    implementation 'org.json:json:20230618'
+    compileOnly("com.electronwill.night-config:toml:${nightconfig_version}")
+    compileOnly("com.electronwill.night-config:core:${nightconfig_version}")
 }
 
 publishing {

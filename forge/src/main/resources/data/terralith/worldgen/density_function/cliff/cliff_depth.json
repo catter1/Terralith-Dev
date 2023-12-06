@@ -39,12 +39,12 @@
             {
               "type":"add",
               "argument1":0.0075,
-              "argument2":"minecraft:overworld/continents"
+              "argument2":"minecraft:overworld/noise_router/continents"
 
 
             },
-            "erosion": "minecraft:overworld/erosion",
-            "weirdness": "minecraft:overworld/ridges",
+            "erosion": "minecraft:overworld/noise_router/erosion",
+            "weirdness": "minecraft:overworld/noise_router/ridges",
             "type": "minecraft:terrain_shaper_spline"
           },
           "argument2": {

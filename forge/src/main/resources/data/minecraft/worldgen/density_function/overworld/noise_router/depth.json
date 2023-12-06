@@ -34,9 +34,9 @@
             "spline": "offset",
             "min_value": -1.5,
             "max_value": 2.5,
-            "continentalness": "minecraft:overworld/continents",
-            "erosion": "minecraft:overworld/erosion",
-            "weirdness": "minecraft:overworld/ridges",
+            "continentalness": "minecraft:overworld/noise_router/continents",
+            "erosion": "minecraft:overworld/noise_router/erosion",
+            "weirdness": "minecraft:overworld/noise_router/ridges",
             "type": "minecraft:terrain_shaper_spline"
           },
           "argument2": {

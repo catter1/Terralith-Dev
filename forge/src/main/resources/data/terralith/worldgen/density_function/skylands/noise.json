@@ -3,7 +3,7 @@
   "min_value": -1,
   "max_value": 1,
   "spline": {
-    "coordinate": "overworld/continents",
+    "coordinate": "overworld/noise_router/continents",
     "points": [
       {
             "location": -0.745,
@@ -14,7 +14,7 @@
             "location": -0.6,
             "derivative": 0,
             "value": {
-    "coordinate": "overworld/erosion",
+    "coordinate": "overworld/noise_router/erosion",
     "points": [
       {
             "location": -0.223,
@@ -25,7 +25,7 @@
             "location": -0.0865,
             "derivative": 0,
             "value": {
-    "coordinate": "overworld/vegetation",
+    "coordinate": "overworld/noise_router/vegetation",
     "points": [
       {
             "location": -0.1,
@@ -37,7 +37,7 @@
             "derivative": 0,
             "value": {
 
-    "coordinate": "overworld/temperature",
+    "coordinate": "overworld/noise_router/temperature",
     "points": [
       {
             "location": -0.45,
@@ -48,7 +48,7 @@
             "location": -0.3,
             "derivative": 0,
             "value": {
-    "coordinate": "overworld/ridges",
+    "coordinate": "overworld/noise_router/ridges",
     "points": [
       {
             "location": 0.1,

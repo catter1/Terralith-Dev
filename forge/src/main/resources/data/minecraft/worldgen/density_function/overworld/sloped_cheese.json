@@ -9,7 +9,7 @@
           "argument1": 
           
           {"type":"add","argument1":          
-          "minecraft:overworld/depth",
+          "minecraft:overworld/noise_router/depth",
         "argument2":
           {
             "type":"add",
@@ -46,9 +46,9 @@
                       "spline": "jaggedness",
                       "min_value": 0.0,
                       "max_value": 1.28,
-                      "continentalness": "minecraft:overworld/continents",
-                      "erosion": "minecraft:overworld/erosion",
-                      "weirdness": "minecraft:overworld/ridges",
+                      "continentalness": "minecraft:overworld/noise_router/continents",
+                      "erosion": "minecraft:overworld/noise_router/erosion",
+                      "weirdness": "minecraft:overworld/noise_router/ridges",
                       "type": "minecraft:terrain_shaper_spline"
                     },
                     "argument2": {

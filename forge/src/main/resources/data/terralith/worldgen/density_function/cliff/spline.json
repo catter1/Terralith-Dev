@@ -7,7 +7,7 @@
    "min_value":0,
    "max_value":4,
    "spline":{
-      "coordinate":"overworld/continents",
+      "coordinate":"overworld/noise_router/continents",
       "points":[
         {
             "location":-0.275,
@@ -18,7 +18,7 @@
             "location":-0.2375,
             "derivative":0,
             "value":{
-               "coordinate":"overworld/erosion",
+               "coordinate":"overworld/noise_router/erosion",
                "points":[
                   {
                      "location":-0.55,
@@ -38,7 +38,7 @@
             "location":-0.18,
             "derivative":0,
             "value":{
-               "coordinate":"overworld/erosion",
+               "coordinate":"overworld/noise_router/erosion",
                "points":[
                   {
                      "location":-0.55,

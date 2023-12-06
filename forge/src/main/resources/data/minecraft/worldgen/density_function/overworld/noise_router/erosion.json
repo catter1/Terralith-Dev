@@ -2,7 +2,7 @@
   "type": "minecraft:flat_cache",
   "argument": {
     "type": "minecraft:range_choice",
-    "input": "minecraft:overworld/continents",
+    "input": "minecraft:overworld/noise_router/continents",
     "min_inclusive": -1000000,
     "max_exclusive": -0.8,
     "when_in_range": {

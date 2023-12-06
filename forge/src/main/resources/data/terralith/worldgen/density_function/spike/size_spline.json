@@ -3,13 +3,13 @@
    "min_value":-3,
    "max_value":0,
    "spline":{
-      "coordinate":"overworld/temperature",
+      "coordinate":"overworld/noise_router/temperature",
       "points":[
          {
             "location":-0.5,
             "derivative":0,
             "value":{
-               "coordinate":"overworld/erosion",
+               "coordinate":"overworld/noise_router/erosion",
                "points":[
                   {
                      "location":0.375,
@@ -25,7 +25,7 @@
                      "location":0.4,
                      "derivative":0,
                      "value":{
-                        "coordinate":"overworld/continents",
+                        "coordinate":"overworld/noise_router/continents",
                         "points":[
                                                       {
                               "location":-0.04,

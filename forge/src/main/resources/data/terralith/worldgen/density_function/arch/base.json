@@ -22,7 +22,7 @@
 
             "argument1":0.05,
             "argument2":{
-                "argument1":"overworld/depth",
+                "argument1":"overworld/noise_router/depth",
                 "argument2":0.0275,
                 "type":"mul"
 
@@ -63,7 +63,7 @@
               "type": "minecraft:y_clamped_gradient"
             },
             "argument2":{
-                "argument1":"overworld/depth",
+                "argument1":"overworld/noise_router/depth",
                 "argument2":0.00001,
                 "type":"mul"
 
@@ -78,7 +78,7 @@
 
             "argument1":-1.3,
             "argument2":{
-                "argument1":"overworld/depth",
+                "argument1":"overworld/noise_router/depth",
                 "argument2":-0.4,
                 "type":"mul"
 

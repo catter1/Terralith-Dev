@@ -4359,12 +4359,12 @@
          "xz_scale":1,
          "y_scale":1
       },
-      "temperature":"minecraft:overworld/temperature",
-      "vegetation":"minecraft:overworld/vegetation",
+      "temperature":"minecraft:overworld/noise_router/temperature",
+      "vegetation":"minecraft:overworld/noise_router/vegetation",
       "continents":"minecraft:overworld/effective_continentalness",
-      "erosion":"minecraft:overworld/erosion",
-      "depth":"minecraft:overworld/depth",
-      "ridges":"minecraft:overworld/ridges",
+      "erosion":"minecraft:overworld/noise_router/erosion",
+      "depth":"minecraft:overworld/noise_router/depth",
+      "ridges":"minecraft:overworld/noise_router/ridges",
       "initial_density_without_jaggedness":    
     {"type":"min",
       "argument1":
@@ -4375,7 +4375,7 @@
         "type": "minecraft:quarter_negative",
         "argument": {
           "type": "minecraft:mul",
-          "argument1":"minecraft:overworld/depth",
+          "argument1":"minecraft:overworld/noise_router/depth",
 
           "argument2": {
             "type": "minecraft:cache_2d",
